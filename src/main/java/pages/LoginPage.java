@@ -20,31 +20,71 @@ public class LoginPage extends DriverFactory{
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath="//p[text()='login']")
-	public WebElement loginButton;
+	
 	
 	@FindBy(xpath="//input[@name='email']")
 	public WebElement emailId;
 	
 	@FindBy(xpath="//input[@name='password']")
-	public WebElement password;
+	public WebElement passwordTexbox;
 	
-	public void clickLoginButton()
+	@FindBy(xpath="//p[text()='Invalid Credentials.']")
+	public WebElement invlaidCredentialErrorMessage;
+	
+	@FindBy(xpath="//p[text()='Must enter an email address']")
+	public WebElement blankUserNameErrorMessage;
+	
+	@FindBy(xpath="//p[text()='Enter your password']")
+	public WebElement blankPasswordErrorMessage;
+	
+	@FindBy(xpath="//p[text()='sign in']/parent::button")
+	public WebElement signInButton;
+	
+
+	
+	public void clickSignInButton()
 	{
-		wait.until(ExpectedConditions.visibilityOf(loginButton));
-		loginButton.click();
+		wait.until(ExpectedConditions.visibilityOf(signInButton));
+		signInButton.click();
 	}
 	
-	public void enterEmail()
+	public void enterInvalidEmail(String email)
 	{
 		wait.until(ExpectedConditions.visibilityOf(emailId));
-		emailId.sendKeys("test@test.com");
+		emailId.sendKeys(email);
 	}
 	
-	public void enterPassword()
+	public void enterInvalidPassword(String password)
 	{
-		wait.until(ExpectedConditions.visibilityOf(password));
-		password.sendKeys("test123");
+		wait.until(ExpectedConditions.visibilityOf(passwordTexbox));
+		passwordTexbox.sendKeys(password);
+	}
+	
+	public void enterBlankEmail()
+	{
+		wait.until(ExpectedConditions.visibilityOf(emailId));
+		emailId.sendKeys("");
+	}
+	
+	public void enterBlankPassword()
+	{
+		wait.until(ExpectedConditions.visibilityOf(passwordTexbox));
+		passwordTexbox.sendKeys("");
+	}
+	
+	
+	public void verifyBlankErrorMessage()
+	{
+		wait.until(ExpectedConditions.visibilityOf(blankUserNameErrorMessage));
+		System.out.println(blankUserNameErrorMessage.isDisplayed());
+		System.out.println(blankPasswordErrorMessage.isDisplayed());
+	}
+	
+	
+	public void verifyInvlidErrorMessage()
+	{
+		wait.until(ExpectedConditions.visibilityOf(invlaidCredentialErrorMessage));
+		System.out.println(invlaidCredentialErrorMessage.isDisplayed());
 	}
 
 }

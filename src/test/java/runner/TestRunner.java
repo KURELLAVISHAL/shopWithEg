@@ -8,13 +8,13 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features= {"D:\\Training\\ShopWithEG\\src\\test\\resources\\features\\login.feature"},
+		features= {"D:\\Training\\ShopWithEG\\src\\test\\resources\\features"},
 		glue= {"stepDefinations"},
-		plugin= {"pretty","html:target/reports.html"}
+		plugin= {"pretty","html:target/cucumberReport.html"},
+		tags= "@InvlidCredentials"
+		
 		
 		)
-
 public class TestRunner {
-
 
 }
