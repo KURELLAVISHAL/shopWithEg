@@ -31,7 +31,7 @@ public class LoginPage extends DriverFactory{
 	
 	public void clickLoginButton()
 	{
-		wait.until(ExpectedConditions.visibilityOf(loginButton));
+		wait.until(ExpectedConditions.elementToBeClickable(loginButton));
 		loginButton.click();
 	}
 	
